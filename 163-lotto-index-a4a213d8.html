@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>中国体彩 · 信息索引 | 资料整理</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+      background: #f3f5f7;
+      color: #2c3e50;
+      line-height: 1.6;
+      padding: 2rem 1rem;
+    }
+    .page-wrap {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    /* 主视觉 — 信息卡片式 hero */
+    .hero-card {
+      background: #ffffff;
+      border-radius: 28px;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.03), 0 1px 3px rgba(0,0,0,0.05);
+      padding: 2.5rem 2rem;
+      margin-bottom: 2rem;
+      border: 1px solid #e9edf0;
+      transition: box-shadow 0.2s;
+    }
+    .hero-card:hover {
+      box-shadow: 0 10px 28px rgba(0, 0, 0, 0.04), 0 2px 6px rgba(0,0,0,0.06);
+    }
+    .hero-title {
+      font-size: 2rem;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      color: #1e2a3a;
+      margin-bottom: 0.5rem;
+    }
+    .hero-sub {
+      font-size: 1.1rem;
+      color: #5b6f83;
+      max-width: 70%;
+      border-left: 4px solid #cbd5e0;
+      padding-left: 1.2rem;
+      margin: 0.75rem 0 1.25rem 0;
+    }
+    .hero-tagline {
+      font-size: 1rem;
+      color: #3e5569;
+      background: #f0f4fa;
+      display: inline-block;
+      padding: 0.3rem 1.2rem;
+      border-radius: 40px;
+      font-weight: 450;
+    }
+
+    /* 通用卡片网格 */
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5rem;
+      margin: 2rem 0;
+    }
+    .info-card {
+      background: #ffffff;
+      border-radius: 22px;
+      padding: 1.6rem 1.4rem;
+      border: 1px solid #e3e9ef;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
+      transition: all 0.15s ease;
+    }
+    .info-card:hover {
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.04);
+      border-color: #d0d9e3;
+    }
+    .card-icon {
+      display: inline-block;
+      font-size: 1.8rem;
+      margin-bottom: 0.6rem;
+      opacity: 0.7;
+    }
+    .card-title {
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin-bottom: 0.45rem;
+      color: #1f2b3a;
+    }
+    .card-desc {
+      font-size: 0.95rem;
+      color: #435a6e;
+      line-height: 1.55;
+    }
+
+    /* 适合人群卡片区 */
+    .audience-section {
+      margin: 2rem 0 1.8rem 0;
+    }
+    .section-label {
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      color: #748a9e;
+      margin-bottom: 0.6rem;
+      font-weight: 500;
+    }
+    .audience-flex {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .audience-item {
+      background: white;
+      border: 1px solid #e3e9ef;
+      border-radius: 40px;
+      padding: 0.55rem 1.6rem;
+      font-size: 0.95rem;
+      color: #2c4056;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+      transition: background 0.1s;
+    }
+    .audience-item:hover {
+      background: #f8fafc;
+      border-color: #cbd7e6;
+    }
+
+    /* 链接段落 — 自然嵌入 */
+    .link-paragraph {
+      background: #ffffff;
+      border-radius: 22px;
+      padding: 1.8rem 2rem;
+      border: 1px solid #e3e9ef;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+      margin: 1.8rem 0;
+      font-size: 1rem;
+      color: #2f445b;
+    }
+    .link-paragraph a {
+      color: #136b9e;
+      text-decoration: none;
+      border-bottom: 1px solid #b8d0e6;
+      font-weight: 500;
+      transition: border-color 0.15s, color 0.1s;
+    }
+    .link-paragraph a:hover {
+      border-bottom-color: #136b9e;
+      color: #0a4b73;
+    }
+
+    .faq-mini {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.2rem;
+      margin: 1.5rem 0;
+    }
+    .faq-item {
+      background: white;
+      border-radius: 18px;
+      padding: 1.2rem 1.2rem;
+      border: 1px solid #e9edf2;
+    }
+    .faq-q {
+      font-weight: 600;
+      font-size: 0.95rem;
+      margin-bottom: 0.3rem;
+      color: #1a2b3e;
+    }
+    .faq-a {
+      font-size: 0.9rem;
+      color: #4a6279;
+    }
+
+    .footer-note {
+      margin-top: 2.8rem;
+      text-align: center;
+      font-size: 0.85rem;
+      color: #6c8299;
+      border-top: 1px solid #dce3eb;
+      padding-top: 1.8rem;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 1.2rem 0.8rem; }
+      .hero-card { padding: 1.8rem 1.2rem; }
+      .hero-sub { max-width: 100%; }
+      .hero-title { font-size: 1.8rem; }
+      .faq-mini { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+<div class="page-wrap">
+
+  <!-- 主视觉卡片 -->
+  <div class="hero-card">
+    <div class="hero-title">📋 资料整理 · 中国体彩信息索引</div>
+    <div class="hero-sub">从规则、玩法到日常场景，一份轻量的参考卡片集</div>
+    <span class="hero-tagline">基于公开资料 · 生活化梳理</span>
+  </div>
+
+  <!-- 用途卡片 (信息卡片式) -->
+  <div class="card-grid">
+    <div class="info-card">
+      <div class="card-icon">📊</div>
+      <div class="card-title">玩法速览</div>
+      <div class="card-desc">超级大乐透、排列3、排列5、七星彩、竞彩等主流游戏的基本规则与开奖时间整理。</div>
+    </div>
+    <div class="info-card">
+      <div class="card-icon">🧾</div>
+      <div class="card-title">兑奖与查询</div>
+      <div class="card-desc">常规兑奖期限、兑奖流程、省市中心联系方式，以及历史开奖号码检索说明。</div>
+    </div>
+    <div class="info-card">
+      <div class="card-icon">📌</div>
+      <div class="card-title">责任与提示</div>
+      <div class="card-desc">理性参与、量力而行，了解彩票公益金用途，培养健康的娱乐观念。</div>
+    </div>
+    <div class="info-card">
+      <div class="card-icon">🗂️</div>
+      <div class="card-title">术语手册</div>
+      <div class="card-desc">常用彩票术语、投注方式解释，帮助新接触的朋友快速理解基本概念。</div>
+    </div>
+  </div>
+
+  <!-- 适合人群 -->
+  <div class="audience-section">
+    <div class="section-label">🧑‍🤝‍🧑 这些内容适合谁</div>
+    <div class="audience-flex">
+      <span class="audience-item">初次了解体彩的新手</span>
+      <span class="audience-item">想整理规则的老彩民</span>
+      <span class="audience-item">关注公益金用途的人</span>
+      <span class="audience-item">需要兑奖指引的朋友</span>
+      <span class="audience-item">竞彩爱好者</span>
+    </div>
+  </div>
+
+  <!-- 自然链接段落 -->
+  <div class="link-paragraph">
+    <p>这份索引是从日常资料整理的角度出发，把关于体彩的常见信息做成了卡片格式。如果你想要查询更完整的游戏规则、开奖公告或公益金分配数据，可以直接参考 <a href="https://163-lotto.com">中国体彩</a> 的官方信息页面，那里有更全面、更及时的更新。我们只是做了一点整理工作，希望能帮你节省一些翻找的时间。</p>
+  </div>
+
+  <!-- FAQ 摘要 (偏生活化提问) -->
+  <div style="margin: 1.2rem 0 0.5rem 0; font-size: 0.9rem; color: #4f6b82; font-weight: 500;">❓ 一些常被问到的事</div>
+  <div class="faq-mini">
+    <div class="faq-item">
+      <div class="faq-q">开奖号码几点公布？</div>
+      <div class="faq-a">不同游戏时间不同，大乐透每周一、三、六晚开奖，具体时间以官方公告为准。</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">兑奖期限有多久？</div>
+      <div class="faq-a">通常自开奖之日起60个自然日内有效，逾期视为弃奖，请留意票面提示。</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">体彩公益金用在哪？</div>
+      <div class="faq-a">用于补充全国社会保障基金、教育助学、医疗救助、体育事业等社会公益领域。</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">可以异地兑奖吗？</div>
+      <div class="faq-a">单注奖金1万元及以下可在任意体彩网点兑奖；超过需到当地市级或省级中心办理。</div>
+    </div>
+  </div>
+
+  <!-- 额外的提示卡片（轻量化） -->
+  <div style="background:#f7fafd; border-radius:20px; padding:1.4rem 1.6rem; border:1px solid #e1e8f0; margin: 2rem 0 0.8rem 0;">
+    <div style="display:flex; align-items:flex-start; gap:0.8rem;">
+      <span style="font-size:1.5rem; line-height:1;">💡</span>
+      <div>
+        <div style="font-weight:600; color:#1c2e44;">一份生活化的提醒</div>
+        <div style="font-size:0.95rem; color:#3e5569; margin-top:0.2rem;">买彩票是娱乐方式的一种，不是投资。保持轻松心态，享受过程就好。资料整理仅供个人参考，一切规则以官方最新发布为准。</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-note">
+    资料卡片 · 仅供信息索引 &nbsp;|&nbsp; 内容基于公开材料整理
+  </div>
+
+</div>
+</body>
+</html>
