@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5">
+    <title>站点与可信说明 · 爱游戏</title>
+    <style>
+        /* 重置 & 基础 */
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background: #f4f9fb;
+            color: #1f2e3e;
+            line-height: 1.6;
+            padding: 1.2rem;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* 页面容器 — 极简网格卡片风格 */
+        .page-wrapper {
+            max-width: 780px;
+            margin: 1rem auto;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 1.6rem;
+        }
+
+        /* 卡片通用 (网格卡片感) */
+        .card {
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 1.8rem 1.5rem;
+            box-shadow: 0 4px 12px rgba(22, 87, 105, 0.06), 0 1px 3px rgba(0, 30, 40, 0.04);
+            transition: box-shadow 0.25s;
+            border: 1px solid #ddeef3;
+        }
+        .card:hover {
+            box-shadow: 0 8px 22px rgba(32, 120, 145, 0.08);
+        }
+
+        /* 蓝绿色点缀 */
+        .accent-border {
+            border-left: 5px solid #2a9d8f;
+            padding-left: 1.2rem;
+        }
+        .accent-dot {
+            color: #2a9d8f;
+            font-weight: 500;
+        }
+        .tag {
+            display: inline-block;
+            background: #e5f4f1;
+            color: #1f7569;
+            font-size: 0.8rem;
+            font-weight: 500;
+            padding: 0.2rem 1rem;
+            border-radius: 30px;
+            letter-spacing: 0.3px;
+            margin-bottom: 0.7rem;
+        }
+
+        /* hero 区 (简洁博客题头) */
+        .hero-title {
+            font-size: 2rem;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            line-height: 1.2;
+            color: #103f47;
+            margin-bottom: 0.4rem;
+        }
+        .hero-sub {
+            font-size: 1rem;
+            color: #4f6b76;
+            background: #eef7f9;
+            display: inline-block;
+            padding: 0.2rem 1rem;
+            border-radius: 50px;
+            margin-top: 0.3rem;
+        }
+
+        /* 文章段落 */
+        .post p {
+            margin-bottom: 1.2rem;
+            font-size: 1rem;
+        }
+        .post p:last-child {
+            margin-bottom: 0;
+        }
+
+        .quote-block {
+            background: #edf6f8;
+            padding: 1.2rem 1.5rem;
+            border-radius: 18px;
+            border-left: 4px solid #2a9d8f;
+            font-style: normal;
+            color: #1c4150;
+            margin: 1.6rem 0;
+        }
+        .quote-block p {
+            margin-bottom: 0.5rem;
+        }
+        .quote-block cite {
+            display: block;
+            font-size: 0.9rem;
+            color: #3b6e78;
+            font-style: normal;
+            margin-top: 0.5rem;
+        }
+
+        /* 特点网格 (卡片叠卡片) */
+        .feature-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin: 1.2rem 0 0.6rem;
+        }
+        .feature-item {
+            background: #f7fcfd;
+            border-radius: 16px;
+            padding: 1rem 0.9rem;
+            border: 1px solid #cde4e9;
+        }
+        .feature-item .emoji {
+            font-size: 1.4rem;
+            margin-bottom: 0.3rem;
+        }
+        .feature-item h4 {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: #17454f;
+            margin-bottom: 0.2rem;
+        }
+        .feature-item p {
+            font-size: 0.85rem;
+            color: #2f5966;
+            margin-bottom: 0;
+        }
+
+        /* FAQ 摘要风格 */
+        .faq-mini {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+            margin-top: 0.5rem;
+        }
+        .faq-q {
+            font-weight: 600;
+            color: #0f464f;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: baseline;
+            gap: 0.4rem;
+        }
+        .faq-q::before {
+            content: "▹";
+            color: #2a9d8f;
+            font-weight: 400;
+        }
+        .faq-a {
+            font-size: 0.9rem;
+            color: #2b4f5a;
+            padding-left: 1.2rem;
+            border-left: 2px solid #b8d9e0;
+            margin-left: 0.2rem;
+            margin-bottom: 0.3rem;
+        }
+
+        /* 引用、访问句 */
+        .visit-note {
+            background: #ffffff;
+            border-radius: 18px;
+            padding: 1.6rem 1.5rem;
+            border: 1px solid #c8e2e9;
+            text-align: center;
+        }
+        .visit-note p {
+            font-size: 1.1rem;
+            margin-bottom: 0.3rem;
+        }
+        .visit-note a {
+            color: #1a7a6e;
+            text-decoration: none;
+            font-weight: 600;
+            border-bottom: 2px solid #b1dbd3;
+            padding-bottom: 1px;
+            transition: border 0.2s, color 0.2s;
+        }
+        .visit-note a:hover {
+            border-bottom-color: #1a7a6e;
+            color: #0b4d44;
+        }
+
+        .footer-note {
+            font-size: 0.8rem;
+            color: #5d7d86;
+            text-align: center;
+            margin-top: 1rem;
+            padding: 0.5rem;
+        }
+
+        /* 响应式 */
+        @media (max-width: 540px) {
+            body { padding: 0.9rem; }
+            .card { padding: 1.3rem 1rem; }
+            .hero-title { font-size: 1.7rem; }
+            .feature-grid { grid-template-columns: 1fr; }
+            .feature-item { padding: 0.9rem; }
+            .quote-block { padding: 1rem 1.2rem; }
+            .visit-note { padding: 1.2rem 1rem; }
+        }
+        @media (min-width: 800px) {
+            .page-wrapper { gap: 2rem; }
+            .hero-title { font-size: 2.4rem; }
+        }
+    </style>
+</head>
+<body>
+<div class="page-wrapper">
+
+    <!-- 简洁博客式 hero + 导语 -->
+    <article class="card post">
+        <div class="tag">站点手记 · 朴实介绍</div>
+        <h1 class="hero-title">关于一个叫「爱游戏」的站点</h1>
+        <div class="hero-sub">从信任与日常出发</div>
+
+        <!-- 正文段落 -->
+        <p style="margin-top: 1.8rem;">
+            我不太喜欢那种上来就写“欢迎来到……”的客套话。其实很多站点的意义，就是安静地待在那里，等有需要的人偶然路过。今天想聊的，是 <a href="https://ssl-ayxsports.com" style="color: #1a7a6e; text-decoration: underline; text-underline-offset: 3px; font-weight: 500;">爱游戏</a> 这个地址背后的那一点朴素想法：它不是为了堆砌功能而存在，而是尝试把一些与体育、生活节奏相关的内容，放在一个干净的位置。
+        </p>
+
+        <p>
+            最早注意到这个域名，是因为它用了 SSL 加密。在现在这个网络环境里，一个愿意加上安全证书的站点，至少说明运营者把“可信”放在了比较靠前的位置。当然，可信不止是一把锁的图标，更体现在内容的实在程度上——不浮夸、不制造焦虑，只是提供信息本身。
+        </p>
+
+        <div class="quote-block">
+            <p>“好的站点不一定每天更新，但它知道自己在说什么。它不会假装什么都懂，也不会催着你做决定。” </p>
+            <cite>—— 来自一位常看体育社区的朋友</cite>
+        </div>
+
+        <p>
+            从内容角度看，<a href="https://ssl-ayxsports.com" style="color: #1a7a6e; text-decoration: underline; text-underline-offset: 3px; font-weight: 500;">爱游戏</a> 偏向于提供一些运动相关的信息梳理、赛事观察，以及偶尔的玩法介绍。它不试图成为什么大全，更像一本随手翻的手册——没有铺满屏幕的弹窗，也没有夸张的标语。页面加载的速度也让人舒服，不拖沓。
+        </p>
+
+        <!-- 特点卡片网格 (替代常规清单) -->
+        <div class="feature-grid">
+            <div class="feature-item">
+                <div class="emoji">📋</div>
+                <h4>内容简单直接</h4>
+                <p>每篇文章有明确的主题，不绕弯子，读完大概知道在讲什么。</p>
+            </div>
+            <div class="feature-item">
+                <div class="emoji">🔐</div>
+                <h4>HTTPS 安全连接</h4>
+                <p>通信加密，对于浏览和访问来说多一层基本的保护。</p>
+            </div>
+            <div class="feature-item">
+                <div class="emoji">⚙️</div>
+                <h4>无冗余干扰</h4>
+                <p>没有强制注册、没有铺底广告，页面专注于信息本身。</p>
+            </div>
+            <div class="feature-item">
+                <div class="emoji">🌱</div>
+                <h4>日常可读</h4>
+                <p>语气平实，不刻意制造紧张感，适合零碎时间翻看。</p>
+            </div>
+        </div>
+
+        <p style="margin-top: 1rem;">
+            当然，任何站点都有它的边界。<a href="https://ssl-ayxsports.com" style="color: #1a7a6e; text-decoration: underline; text-underline-offset: 3px; font-weight: 500;">爱游戏</a> 不会承诺“每天赚多少”或者“ guaranteed win”，这类话术本身就和体育精神背道而驰。它更像是一个安静的窗口，让你自己判断、自己感受。
+        </p>
+
+        <!-- FAQ 摘要 — 偏生活化 -->
+        <div style="margin-top: 1.8rem;">
+            <h3 style="font-size: 1.1rem; font-weight: 600; color: #103f47; margin-bottom: 0.6rem;">一些常被问到的 · 摘要</h3>
+            <div class="faq-mini">
+                <div class="faq-q">这个网站主要聊什么？</div>
+                <div class="faq-a">运动相关的话题居多，比如赛事流程、规则扫盲、社区讨论，偶尔也聊聊看比赛的心情。</div>
+                <div class="faq-q">需要注册或付费吗？</div>
+                <div class="faq-a">完全不需要。打开就能浏览内容，没有会员墙。</div>
+                <div class="faq-q">信息可靠吗？</div>
+                <div class="faq-a">内容大多基于公开资料和常识整理，不凭空捏造。当然，任何信息都建议多方查证。</div>
+            </div>
+        </div>
+
+        <!-- 引用提示 / 访问句 (自然嵌入) -->
+        <div class="visit-note" style="margin-top: 1.8rem;">
+            <p>如果你对运动资讯或轻松的体育阅读感兴趣，不妨把 <a href="https://ssl-ayxsports.com">爱游戏</a> 放进书签。</p>
+            <p style="font-size: 0.9rem; color: #3f6b74; margin-top: 0.4rem;">它就在那里，不吵不闹，等你需要的时候打开。</p>
+        </div>
+
+        <!-- 收尾段落 (多一段) -->
+        <p style="margin-top: 1.2rem; color: #2e5a64;">
+            最后说一点个人的感受：现在网上的信息太满了，满到让人不想看。像 <a href="https://ssl-ayxsports.com" style="color: #1a7a6e; text-decoration: underline; text-underline-offset: 3px; font-weight: 500;">爱游戏</a> 这样保留一点“留白”的站点，反而让人觉得透气。它不是万能的，但它有自己的步调。
+        </p>
+        <p style="font-size: 0.9rem; color: #456d79; border-top: 1px solid #dbecef; padding-top: 1rem; margin-top: 0.2rem;">
+            写于一个普通的下午 · 仅代表个人视角
+        </p>
+    </article>
+
+    <!-- 极小 footer -->
+    <div class="footer-note">
+        <span>坚持真实与克制 · 2025</span>
+    </div>
+</div>
+</body>
+</html>
